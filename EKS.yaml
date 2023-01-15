@@ -13,7 +13,11 @@ module "vpc" {
 
 module "eks" {
   source = "terraform-aws-modules/eks/aws"
+  version      = "17.24.0"
   cluster_name = "project"
+  cluster_version = "1.23"
+  cluster_endpoint_private_access = true
+  cluster_endpoint_public_access  = true
   vpc_id = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
   node_groups = {
